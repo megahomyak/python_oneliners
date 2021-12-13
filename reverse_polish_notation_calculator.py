@@ -52,9 +52,13 @@
                     start=1
                 )
             ) == (
-                (print("Stack top:", stack[-1]) == stack.clear())
-                if len(stack) != 0 else
-                None
+                print("Stack is empty, nothing to print")
+                if len(stack) == 0 else
+                (
+                    print("Stack (from bottom to top):", ", ".join(
+                        map(str, stack)
+                    )) == stack.clear()
+                )
             )
         ) for _ in __import__("itertools").repeat(1)
     )
