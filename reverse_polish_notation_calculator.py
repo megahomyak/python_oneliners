@@ -10,7 +10,7 @@
                     if number_regex_pattern.fullmatch(
                         minimal_stack_size
                     ) is None else
-                    stack.append(int(minimal_stack_size))
+                    stack.append(float(minimal_stack_size))
                 )
                 if operation is None else
                 (
@@ -66,7 +66,7 @@
         ) for _ in __import__("itertools").repeat(1)
     )
 )(
-    __import__("re").compile(r"\d+"),
+    __import__("re").compile(r"(?:\+|-)?\d+(?:\.\d+)?"),
     [],
     lambda iterable: reduce(lambda _, __: None, iterable)
 ))(
