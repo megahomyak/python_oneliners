@@ -1,7 +1,7 @@
-(
-    lambda number_regex_pattern, stack: [
+(lambda reduce: (
+    lambda number_regex_pattern, stack, roll_iterable: roll_iterable(
         (
-            [
+            roll_iterable(
                 (
                     print(
                         f'Unknown word "{minimal_stack_size}" (word number is '
@@ -51,15 +51,17 @@
                     ),
                     start=1
                 )
-            ] == (
-                (
-                    print("Stack top:", stack[-1])
-                    if len(stack) != 0 else
-                    None
-                ) == (
-                    stack.clear()
-                )
+            ) == (
+                (print("Stack top:", stack[-1]) == stack.clear())
+                if len(stack) != 0 else
+                None
             )
         ) for _ in __import__("itertools").repeat(1)
-    ]
-)(__import__("re").compile(r"\d+"), [])
+    )
+)(
+    __import__("re").compile(r"\d+"),
+    [],
+    lambda iterable: reduce(lambda _, __: None, iterable)
+))(
+    __import__("functools").reduce
+)
