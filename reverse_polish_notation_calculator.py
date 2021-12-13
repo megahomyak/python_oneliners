@@ -15,7 +15,7 @@
                 if operation is None else
                 (
                     print(
-                        f"Not enough elements on stack to perform the "
+                        f"Not enough elements on stack to perform "
                         f"{operation_name} (word number {word_number})! ("
                         f"Required: {minimal_stack_size}, stack length: "
                         f"{len(stack)})"
@@ -45,7 +45,10 @@
                                 lambda stack, right_operand: (
                                     stack.pop() / right_operand
                                 )
-                            )(stack, stack.pop()), "division")
+                            )(stack, stack.pop()), "division"),
+                            "abs": (
+                                1, lambda stack: abs(stack.pop()), "modulus"
+                            )
                         }.get(word, (word, None, None))
                         for word in input().split()
                     ),
